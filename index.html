@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Giovana 20 - Luan Santana Edition</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,6 +20,10 @@
         --fly-duration: 5s;
         --photo-duration: 3s;
         --details-delay: calc(var(--fly-duration) + var(--photo-duration));
+        --glass-bg: rgba(255, 255, 255, 0.15);
+        --glass-border: 1px solid rgba(255, 255, 255, 0.35);
+        --glass-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+        --glass-blur: blur(6px);
       }
 
       * {
@@ -31,9 +35,9 @@
       body {
         font-family: "Quicksand", "Cormorant Garamond", serif;
         color: var(--ink);
-        background: radial-gradient(circle at 20% 20%, #ffffff 0%, #f9f9fb 35%, #f0f1f4 100%);
-        min-height: 100vh;
-        overflow-x: hidden;
+        background: radial-gradient(circle at 20% 20%, #e8e8ec 0%, #dddde2 35%, #d4d5da 100%);
+        height: 100dvh;
+        overflow: hidden;
       }
 
       .bg-shapes {
@@ -102,31 +106,25 @@
 
       @keyframes luan-flight {
         0% {
-          transform: translate3d(-120%, 2vh, 0) rotate(-6deg);
+          transform: translate3d(-120%, 0vh, 0) rotate(-3deg);
         }
-        12% {
-          transform: translate3d(-95%, -4vh, 0) rotate(-2deg);
+        16% {
+          transform: translate3d(-80%, -4vh, 0) rotate(-1deg);
         }
-        24% {
-          transform: translate3d(-70%, 3vh, 0) rotate(1deg);
+        33% {
+          transform: translate3d(-35%, 4vh, 0) rotate(2deg);
         }
-        36% {
-          transform: translate3d(-45%, -5vh, 0) rotate(-3deg);
+        50% {
+          transform: translate3d(10%, -4vh, 0) rotate(-1deg);
         }
-        48% {
-          transform: translate3d(-20%, 4vh, 0) rotate(2deg);
-        }
-        60% {
-          transform: translate3d(15%, -4vh, 0) rotate(3deg);
-        }
-        72% {
-          transform: translate3d(50%, 3vh, 0) rotate(-2deg);
+        67% {
+          transform: translate3d(55%, 4vh, 0) rotate(2deg);
         }
         84% {
-          transform: translate3d(85%, -3vh, 0) rotate(1deg);
+          transform: translate3d(100%, -3vh, 0) rotate(-1deg);
         }
         100% {
-          transform: translate3d(140%, 4vh, 0) rotate(0deg);
+          transform: translate3d(140%, 0vh, 0) rotate(0deg);
         }
       }
 
@@ -214,45 +212,33 @@
         z-index: 4;
         display: grid;
         place-items: center;
-        background: radial-gradient(circle at top, #ffffff 0%, #f2f2f2 55%, #e3e4e8 100%);
-      }
-
-      .intro-card {
+        place-content: center;
+        gap: 32px;
         text-align: center;
-        padding: 36px 32px;
-        border-radius: 26px;
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.28));
-        box-shadow: 0 18px 40px rgba(26, 26, 26, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(14px) saturate(1.2);
-        -webkit-backdrop-filter: blur(14px) saturate(1.2);
+        padding: 0 8vw;
+        background: radial-gradient(circle at top, #ffffff 0%, #f2f2f2 55%, #e3e4e8 100%);
       }
 
       .intro-title {
         font-family: "Cinzel", serif;
-        font-size: clamp(1.8rem, 3vw, 2.4rem);
-        margin-bottom: 14px;
-        letter-spacing: 1.2px;
+        font-size: clamp(2.2rem, 5vw, 3.2rem);
+        letter-spacing: 2px;
         text-transform: uppercase;
+        line-height: 1.2;
       }
 
       .intro-button {
-        border: none;
-        padding: 14px 28px;
+        border: var(--glass-border);
+        padding: 18px 48px;
         border-radius: 999px;
         font-weight: 700;
         letter-spacing: 1px;
         text-transform: uppercase;
-        background: linear-gradient(120deg, #ffffff, #e6e6e6);
-        border: 1px solid var(--silver);
+        font-size: 1.05rem;
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
         cursor: pointer;
         animation: pulse 1.8s ease-in-out infinite;
-      }
-
-      .intro-hint {
-        margin-top: 12px;
-        font-size: 0.9rem;
-        color: #666;
       }
 
       .started .intro-screen {
@@ -262,7 +248,7 @@
       }
 
       .started .luan-fly {
-        animation: luan-flight var(--fly-duration) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+        animation: luan-flight var(--fly-duration) linear forwards;
       }
 
       @keyframes pulse {
@@ -333,7 +319,8 @@
 
       .stage-details {
         place-items: center;
-        padding-top: 32px;
+        padding: 16px 6vw 100px;
+        pointer-events: auto;
       }
 
       .balloons {
@@ -361,77 +348,22 @@
         animation: balloon-rise 12s linear infinite;
       }
 
-      .balloon:nth-child(1) {
-        left: 12%;
-        animation-duration: 10s;
-        animation-delay: 0s;
-        --scale: 0.95;
-        --drift: 22px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(25deg) saturate(1.2);
-      }
-
-      .balloon:nth-child(2) {
-        left: 28%;
-        animation-duration: 11s;
-        animation-delay: -6s;
-        --scale: 0.85;
-        --drift: 28px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(145deg) saturate(1.3);
-      }
-
-      .balloon:nth-child(3) {
-        left: 68%;
-        animation-duration: 10.5s;
-        animation-delay: -8s;
-        --scale: 1.05;
-        --drift: 26px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(250deg) saturate(1.25);
-      }
-
-      .balloon:nth-child(4) {
-        left: 84%;
-        animation-duration: 12s;
-        animation-delay: -10s;
-        --scale: 0.9;
-        --drift: 30px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(320deg) saturate(1.2);
-      }
-
-      .balloon:nth-child(5) {
-        left: 44%;
-        animation-duration: 9.5s;
-        animation-delay: -3s;
-        --scale: 0.9;
-        --drift: 20px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(80deg) saturate(1.3);
-      }
-
-      .balloon:nth-child(6) {
-        left: 6%;
-        animation-duration: 11.5s;
-        animation-delay: -7s;
-        --scale: 0.8;
-        --drift: 26px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(200deg) saturate(1.2);
-      }
-
-      .balloon:nth-child(7) {
-        left: 92%;
-        animation-duration: 10.8s;
-        animation-delay: -9s;
-        --scale: 0.88;
-        --drift: 24px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(15deg) saturate(1.35);
-      }
-
-      .balloon:nth-child(8) {
-        left: 56%;
-        animation-duration: 12.5s;
-        animation-delay: -11s;
-        --scale: 1.1;
-        --drift: 32px;
-        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(280deg) saturate(1.25);
-      }
+      .balloon:nth-child(1)  { left:  6%; animation-duration: 10s;   animation-delay:   0s; --scale: 0.95; --drift: 22px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(25deg)  saturate(1.2); }
+      .balloon:nth-child(2)  { left: 16%; animation-duration: 11s;   animation-delay:  -6s; --scale: 0.85; --drift: 28px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(145deg) saturate(1.3); }
+      .balloon:nth-child(3)  { left: 26%; animation-duration: 10.5s; animation-delay:  -8s; --scale: 1.05; --drift: 26px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(250deg) saturate(1.25); }
+      .balloon:nth-child(4)  { left: 36%; animation-duration: 12s;   animation-delay: -10s; --scale: 0.9;  --drift: 30px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(320deg) saturate(1.2); }
+      .balloon:nth-child(5)  { left: 46%; animation-duration: 9.5s;  animation-delay:  -3s; --scale: 0.9;  --drift: 20px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(80deg)  saturate(1.3); }
+      .balloon:nth-child(6)  { left: 56%; animation-duration: 11.5s; animation-delay:  -7s; --scale: 0.8;  --drift: 26px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(200deg) saturate(1.2); }
+      .balloon:nth-child(7)  { left: 66%; animation-duration: 10.8s; animation-delay:  -9s; --scale: 0.88; --drift: 24px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(15deg)  saturate(1.35); }
+      .balloon:nth-child(8)  { left: 76%; animation-duration: 12.5s; animation-delay: -11s; --scale: 1.1;  --drift: 32px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(280deg) saturate(1.25); }
+      .balloon:nth-child(9)  { left: 86%; animation-duration: 10.2s; animation-delay:  -4s; --scale: 0.92; --drift: 22px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(60deg)  saturate(1.2); }
+      .balloon:nth-child(10) { left: 94%; animation-duration: 11.8s; animation-delay: -13s; --scale: 1.0;  --drift: 28px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(180deg) saturate(1.3); }
+      .balloon:nth-child(11) { left: 11%; animation-duration: 9.8s;  animation-delay:  -2s; --scale: 0.87; --drift: 20px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(300deg) saturate(1.25); }
+      .balloon:nth-child(12) { left: 21%; animation-duration: 13s;   animation-delay: -15s; --scale: 1.02; --drift: 30px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(100deg) saturate(1.2); }
+      .balloon:nth-child(13) { left: 42%; animation-duration: 10.4s; animation-delay:  -5s; --scale: 0.93; --drift: 24px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(220deg) saturate(1.3); }
+      .balloon:nth-child(14) { left: 62%; animation-duration: 11.2s; animation-delay: -12s; --scale: 0.82; --drift: 26px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(40deg)  saturate(1.35); }
+      .balloon:nth-child(15) { left: 72%; animation-duration: 9.2s;  animation-delay:  -1s; --scale: 1.08; --drift: 22px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(160deg) saturate(1.2); }
+      .balloon:nth-child(16) { left: 82%; animation-duration: 12.8s; animation-delay:  -8s; --scale: 0.96; --drift: 28px; filter: drop-shadow(0 8px 10px rgba(0,0,0,0.18)) hue-rotate(340deg) saturate(1.25); }
 
       @keyframes balloon-rise {
         0% {
@@ -526,7 +458,7 @@
 
       .details-title {
         font-family: "Cinzel", serif;
-        font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+        font-size: clamp(2.4rem, 6vw, 3.4rem);
         line-height: 1.05;
         text-transform: uppercase;
         letter-spacing: 2px;
@@ -537,36 +469,37 @@
         font-weight: 600;
         letter-spacing: 1.4px;
         text-transform: uppercase;
-        font-size: 1.05rem;
+        font-size: clamp(1rem, 2.5vw, 1.2rem);
         color: #5c5c5c;
       }
 
       .details-grid {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 12px 16px;
+        gap: 14px 16px;
       }
 
       .detail-item {
         display: grid;
-        gap: 4px;
-        padding: 10px 12px;
-        border-radius: 16px;
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        background: linear-gradient(160deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.25));
-        box-shadow: 0 12px 28px rgba(23, 23, 23, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.55);
-        backdrop-filter: blur(12px) saturate(1.15);
-        -webkit-backdrop-filter: blur(12px) saturate(1.15);
+        gap: 6px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
       }
 
       .detail-label {
-        font-size: 0.75rem;
+        font-size: 0.88rem;
         letter-spacing: 1.2px;
         text-transform: uppercase;
         color: #7a7a7a;
       }
 
       .detail-value {
+        font-size: 1.2rem;
         font-weight: 600;
         color: #1f1f1f;
       }
@@ -580,23 +513,90 @@
 
       .detail-item--full {
         grid-column: 1 / -1;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .detail-value-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+
+      .detail-value-row .detail-value {
+        flex: 1;
+        text-align: center;
+      }
+
+      .detail-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+        flex-shrink: 0;
+        align-items: center;
+        align-self: center;
+      }
+
+      .detail-action-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        color: #1a1a1a;
+        text-decoration: none;
+        transition: transform 0.15s ease;
+        flex-shrink: 0;
+        background: none;
+        border: none;
+        padding: 0;
+      }
+
+      .detail-action-btn:active {
+        transform: scale(0.9);
+      }
+
+      .detail-action-icon {
+        width: 56px;
+        height: 56px;
+        border-radius: 50%;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        display: grid;
+        place-items: center;
+      }
+
+      .detail-action-label {
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        color: #555;
+        text-align: center;
+      }
+
+      .detail-action-btn.copied .detail-action-icon svg {
+        stroke: #2e7d32;
       }
 
       .details-card {
         overflow: hidden;
-        border-radius: 18px;
-        border: 1px solid rgba(255, 255, 255, 0.45);
-        background: linear-gradient(140deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.2));
-        box-shadow: 0 16px 34px rgba(26, 26, 26, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(14px) saturate(1.15);
-        -webkit-backdrop-filter: blur(14px) saturate(1.15);
+        border-radius: 20px;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
       }
 
       .footer-note {
-        font-size: 0.95rem;
+        font-size: 1.1rem;
         color: #4a4a4a;
-        line-height: 1.4;
-        padding: 16px;
+        line-height: 1.5;
+        padding: 20px;
       }
 
       .footer-note strong {
@@ -660,52 +660,130 @@
         right: 18px;
         bottom: 18px;
         z-index: 3;
-        border: 1px solid var(--silver);
-        background: rgba(255, 255, 255, 0.9);
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
         padding: 10px 16px;
         border-radius: 999px;
         font-weight: 600;
         cursor: pointer;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
       }
 
-      .sound-toggle[hidden] {
-        display: none;
+      .copy-toast {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) scale(0.9);
+        background: rgba(30, 30, 30, 0.88);
+        color: #fff;
+        font-size: 0.9rem;
+        font-weight: 600;
+        padding: 12px 24px;
+        border-radius: 999px;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+        z-index: 20;
+        white-space: nowrap;
       }
 
+      .copy-toast.show {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+      }
+
+      /* ── Apple Music player ── */
       .mini-player {
         position: fixed;
-        left: 18px;
-        bottom: 18px;
-        z-index: 3;
+        bottom: 28px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 5;
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 10px 14px;
+        gap: 16px;
+        padding: 12px 18px 12px 14px;
         border-radius: 999px;
-        border: 1px solid rgba(199, 199, 199, 0.8);
-        background: rgba(255, 255, 255, 0.85);
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
-        font-size: 0.85rem;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        white-space: nowrap;
+        transition: opacity 0.4s ease, transform 0.4s ease;
       }
 
       .mini-player[hidden] {
         display: none;
       }
 
-      .mini-player button {
-        border: 1px solid rgba(199, 199, 199, 0.9);
-        background: #ffffff;
-        padding: 6px 12px;
-        border-radius: 999px;
-        font-weight: 600;
-        cursor: pointer;
+      /* ícone de nota + info da música */
+      .mp-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        display: grid;
+        place-items: center;
+        font-size: 20px;
+        flex-shrink: 0;
       }
 
-      .mini-player input[type="range"] {
-        width: 90px;
-        accent-color: #8f8f8f;
+      .mp-info {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        min-width: 0;
       }
+
+      .mp-title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #1a1a1a;
+        letter-spacing: 0.2px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .mp-artist {
+        font-size: 0.82rem;
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.5);
+        letter-spacing: 0.1px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .mp-divider {
+        width: 1px;
+        height: 26px;
+        background: rgba(0, 0, 0, 0.12);
+        flex-shrink: 0;
+      }
+
+      /* botões de controle */
+      .mp-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: none;
+        background: rgba(255, 255, 255, 0.3);
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition: background 0.15s ease, transform 0.1s ease;
+        color: #1a1a1a;
+        font-size: 18px;
+      }
+
+      .mp-btn:active {
+        transform: scale(0.9);
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+
 
       @media (max-width: 720px) {
         header {
@@ -760,15 +838,24 @@
     <audio id="luan-audio" src="imagens/luan-vouvoar.mp3" preload="auto"></audio>
     <button class="sound-toggle" id="sound-toggle" hidden>Ativar som</button>
     <div class="mini-player" id="mini-player" hidden>
-      <button type="button" id="mini-play-toggle">Pausar</button>
-      <input type="range" id="mini-volume" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
-    </div>
-    <div class="intro-screen">
-      <div class="intro-card">
-        <div class="intro-title">Convite especial da Giovana</div>
-        <button class="intro-button" id="open-invite">Abrir convite</button>
-        <div class="intro-hint">Toque para iniciar a surpresa</div>
+      <div class="mp-icon">♪</div>
+      <div class="mp-info">
+        <span class="mp-title">Vou Voar</span>
+        <span class="mp-artist">Luan Santana</span>
       </div>
+      <div class="mp-divider"></div>
+      <button class="mp-btn" id="mini-play-toggle" aria-label="Pausar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+          <rect id="pause-bar-1" x="5" y="4" width="4" height="16" rx="1"/>
+          <rect id="pause-bar-2" x="15" y="4" width="4" height="16" rx="1"/>
+          <path id="play-triangle" d="M6 4l14 8-14 8V4z" style="display:none"/>
+        </svg>
+      </button>
+    </div>
+    <div class="copy-toast" id="copy-toast">Endereço copiado!</div>
+    <div class="intro-screen">
+      <div class="intro-title">Convite especial da Giovana</div>
+      <button class="intro-button" id="open-invite">Abrir convite</button>
     </div>
     <div id="root"></div>
 
@@ -805,6 +892,14 @@
                 <span className="balloon"></span>
                 <span className="balloon"></span>
                 <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
               </div>
               <div className="stage-content">
                 <div className="details-layout">
@@ -822,18 +917,40 @@
                       <span className="detail-value">A partir das 12h</span>
                     </div>
                     <div className="detail-item detail-item--full">
-                      <span className="detail-label">Local e Bairro</span>
-                      <span className="detail-value">
-                        Rua Orlando Pacini, 336
-                        <br />
-                        Santa Cruz, Mogi Mirim
-                      </span>
+                      <span className="detail-label">Local</span>
+                      <div className="detail-value-row">
+                        <span className="detail-value">
+                          Rua Orlando Pacini, 336
+                          <br />
+                          Santa Cruz, Mogi Mirim
+                        </span>
+                        <div className="detail-actions">
+                          <button className="detail-action-btn" id="btn-copy" aria-label="Copiar endereço">
+                            <div className="detail-action-icon">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2"/>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                              </svg>
+                            </div>
+                            <span className="detail-action-label">Copiar</span>
+                          </button>
+                          <a className="detail-action-btn" id="btn-map" href="#" aria-label="Abrir no mapa">
+                            <div className="detail-action-icon">
+                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                              </svg>
+                            </div>
+                            <span className="detail-action-label">Mapa</span>
+                          </a>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   <div className="details-card">
                     <div className="details-footer">
                       <div className="footer-note">
-                        Traga <strong>roupa de banho</strong> e, se quiser beber, leve a sua
+                        Traga <strong>roupa de banho</strong> e, se quiser beber, traga seu <strong>copo</strong> e a sua
                         <strong> bebida alcoolica</strong>.
                       </div>
                       <div className="footer-photo">
@@ -861,127 +978,116 @@
       };
 
       if (fly && audio && openInvite) {
-        const soundToggle = document.getElementById("sound-toggle");
-        const miniPlayer = document.getElementById("mini-player");
+        const soundToggle    = document.getElementById("sound-toggle");
+        const miniPlayer     = document.getElementById("mini-player");
         const miniPlayToggle = document.getElementById("mini-play-toggle");
-        const miniVolume = document.getElementById("mini-volume");
-        let audioUnlocked = false;
+        const pauseBar1      = document.getElementById("pause-bar-1");
+        const pauseBar2      = document.getElementById("pause-bar-2");
+        const playTriangle   = document.getElementById("play-triangle");
+        let audioUnlocked    = false;
+
+        const setPlayIcon = (playing) => {
+          if (!pauseBar1 || !pauseBar2 || !playTriangle) return;
+          pauseBar1.style.display    = playing ? "" : "none";
+          pauseBar2.style.display    = playing ? "" : "none";
+          playTriangle.style.display = playing ? "none" : "";
+          miniPlayToggle && miniPlayToggle.setAttribute("aria-label", playing ? "Pausar" : "Tocar");
+        };
 
         const unlockAudio = () => {
-          if (audioUnlocked) {
-            return Promise.resolve();
-          }
+          if (audioUnlocked) return Promise.resolve();
           audioUnlocked = true;
           audio.muted = true;
-          const playAttempt = audio.play();
-          const finalize = () => {
-            audio.pause();
-            audio.currentTime = 0;
-            audio.muted = false;
-          };
-
-          if (playAttempt && playAttempt.then) {
-            return playAttempt.then(finalize).catch(() => {
-              audioUnlocked = false;
+          return (audio.play() || Promise.resolve())
+            .catch(() => {})
+            .finally(() => {
+              audio.pause();
+              audio.currentTime = 0;
+              audio.muted = false;
             });
-          }
-
-          finalize();
-          return Promise.resolve();
         };
+
         const startAudio = () => {
-          const playFromFive = () => {
-            audio.volume = 1;
-            if (miniVolume) {
-              miniVolume.value = String(audio.volume);
-            }
-            if (audio.readyState >= 2) {
-              audio.currentTime = Math.min(6, audio.duration || 6);
-            }
-            const playPromise = audio.play();
-            if (playPromise && playPromise.then) {
-              playPromise.then(() => {
-                audio.currentTime = Math.min(6, audio.duration || 6);
-              });
-            }
-            if (miniPlayToggle) {
-              miniPlayToggle.textContent = "Pausar";
-            }
-            return playPromise;
+          const doPlay = () => {
+            audio.currentTime = Math.min(6, audio.duration || 0);
+            const p = audio.play();
+            if (p) p.catch(() => { if (soundToggle) soundToggle.hidden = false; });
+            setPlayIcon(true);
           };
-
-          if (audio.readyState >= 2) {
-            return playFromFive();
+          if (audio.readyState >= 3) {
+            doPlay();
           } else {
-            audio.addEventListener("loadedmetadata", playFromFive, { once: true });
+            audio.addEventListener("canplay", doPlay, { once: true });
+            audio.load();
           }
         };
 
-        const beginSequence = () => {
-          markStarted();
-          const attempt = startAudio();
-          if (attempt && attempt.catch) {
-            attempt.catch(() => {
-              if (soundToggle) {
-                soundToggle.hidden = false;
-              }
-            });
-          }
-        };
+        const beginSequence = () => { markStarted(); startAudio(); };
 
         openInvite.addEventListener("click", () => {
           unlockAudio().finally(() => beginSequence());
         });
-
-        document.addEventListener(
-          "touchstart",
-          () => {
-            unlockAudio();
-          },
-          { once: true, passive: true }
-        );
-        document.addEventListener(
-          "click",
-          () => {
-            unlockAudio();
-          },
-          { once: true }
-        );
+        document.addEventListener("touchstart", () => unlockAudio(), { once: true, passive: true });
 
         if (soundToggle) {
-          soundToggle.addEventListener("click", () => {
-            soundToggle.hidden = true;
-            startAudio();
-          });
-        }
-        if (miniPlayToggle) {
-          miniPlayToggle.addEventListener("click", () => {
-            if (audio.paused) {
-              audio.play();
-              miniPlayToggle.textContent = "Pausar";
-            } else {
-              audio.pause();
-              miniPlayToggle.textContent = "Tocar";
-            }
-          });
+          soundToggle.addEventListener("click", () => { soundToggle.hidden = true; startAudio(); });
         }
 
-        if (miniVolume) {
-          miniVolume.addEventListener("input", (event) => {
-            const target = event.target;
-            audio.volume = Number(target.value);
+        if (miniPlayToggle) {
+          miniPlayToggle.addEventListener("click", () => {
+            if (audio.paused) { audio.play(); setPlayIcon(true); }
+            else              { audio.pause(); setPlayIcon(false); }
           });
         }
 
         fly.addEventListener("animationend", () => {
-          audio.volume = 0.2;
-          if (miniVolume) {
-            miniVolume.value = String(audio.volume);
+          if (miniPlayer) miniPlayer.hidden = false;
+        });
+
+        // delegação de eventos no document — funciona independente do React
+        document.addEventListener("click", (e) => {
+          const copyBtn = e.target.closest("#btn-copy");
+          if (copyBtn) {
+            const text = "Rua Orlando Pacini, 336, Santa Cruz, Mogi Mirim";
+            if (navigator.clipboard) {
+              navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+            } else {
+              fallbackCopy(text);
+            }
+            copyBtn.classList.add("copied");
+            const toast = document.getElementById("copy-toast");
+            if (toast) {
+              toast.classList.add("show");
+              clearTimeout(toast._timer);
+              toast._timer = setTimeout(() => {
+                toast.classList.remove("show");
+                copyBtn.classList.remove("copied");
+              }, 2000);
+            }
           }
-          if (miniPlayer) {
-            miniPlayer.hidden = false;
+
+          const mapBtn = e.target.closest("#btn-map");
+          if (mapBtn) {
+            e.preventDefault();
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const addr = encodeURIComponent("Rua Orlando Pacini 336, Santa Cruz, Mogi Mirim, SP");
+            window.location.href = isIOS
+              ? "https://maps.apple.com/?q=" + addr
+              : "https://maps.google.com/?q=" + addr;
           }
         });
+
+        function fallbackCopy(text) {
+          const el = document.createElement("textarea");
+          el.value = text;
+          el.style.position = "fixed";
+          el.style.opacity = "0";
+          document.body.appendChild(el);
+          el.focus();
+          el.select();
+          document.execCommand("copy");
+          document.body.removeChild(el);
+        }
       }
     </script>
   </body>
