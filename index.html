@@ -320,8 +320,11 @@
 
       .stage-details {
         place-items: center;
-        padding: 16px 6vw 100px;
+        padding: 48px 6vw 140px;
         pointer-events: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
       }
 
       .balloons {
@@ -452,9 +455,9 @@
 
       .details-header {
         display: grid;
-        gap: 8px;
+        gap: 4px;
         text-align: center;
-        margin-bottom: 12px;
+        margin-bottom: 6px;
       }
 
       .details-title {
@@ -464,6 +467,7 @@
         text-transform: uppercase;
         letter-spacing: 2px;
         white-space: nowrap;
+        font-weight: 500;
       }
 
       .details-subtitle {
@@ -505,18 +509,47 @@
         color: #1f1f1f;
       }
 
+      .detail-value-compact {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #1f1f1f;
+      }
+
       .details-footer {
         display: grid;
         grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
-        gap: 0;
+        gap: 18px;
         align-items: center;
+        padding: 18px;
       }
 
       .detail-item--full {
         grid-column: 1 / -1;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+      }
+
+      .detail-item--actions {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px 18px;
+        border-radius: 20px;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        justify-content: center;
+        align-items: center;
       }
 
       .detail-value-row {
@@ -598,7 +631,7 @@
         font-size: 1.1rem;
         color: #4a4a4a;
         line-height: 1.5;
-        padding: 20px;
+        padding: 0;
       }
 
       .footer-note strong {
@@ -606,13 +639,18 @@
       }
 
       .footer-photo {
-        border-radius: 18px;
+        border-radius: 16px;
         overflow: hidden;
-        border: none;
-        background: transparent;
-        box-shadow: none;
-        height: 150px;
+        border: var(--glass-border);
+        background: var(--glass-bg);
+        box-shadow: var(--glass-shadow);
+        backdrop-filter: var(--glass-blur);
+        -webkit-backdrop-filter: var(--glass-blur);
+        aspect-ratio: 1 / 1;
+        width: 100%;
+        max-width: 160px;
         position: relative;
+        margin: 0 auto;
       }
 
       .footer-photo img {
@@ -621,9 +659,11 @@
         object-fit: cover;
         display: block;
         position: absolute;
-        inset: 0;
+        top: 0;
+        left: 0;
         opacity: 0;
         transition: opacity 0.8s ease;
+        border-radius: inherit;
       }
 
       .footer-photo img.active {
@@ -830,11 +870,18 @@
         }
 
         .details-footer {
-          grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+          grid-template-columns: 1fr minmax(120px, 140px);
+          gap: 12px;
+          align-items: center;
         }
 
         .footer-photo {
-          height: 160px;
+          max-width: 100%;
+          margin: 0;
+        }
+
+        .detail-action-label {
+          font-size: 0.65rem;
         }
       }
     </style>
@@ -921,48 +968,60 @@
                   <div className="details-grid">
                     <div className="detail-item">
                       <span className="detail-label">Data</span>
-                      <span className="detail-value">24/05/26</span>
+                        <span className="detail-value">24/05/26</span>
                     </div>
                     <div className="detail-item">
-                      <span className="detail-label">Horario</span>
+                      <span className="detail-label">Horário</span>
                       <span className="detail-value">A partir das 12h</span>
                     </div>
                     <div className="detail-item detail-item--full">
                       <span className="detail-label">Local</span>
-                      <div className="detail-value-row">
-                        <span className="detail-value">
-                          R. Orlando Pacini, 336
-                          <br />
-                          Vila Melo, Mogi Mirim - SP
-                        </span>
-                        <div className="detail-actions">
-                          <button className="detail-action-btn" id="btn-copy" aria-label="Copiar endereço">
-                            <div className="detail-action-icon">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="9" y="9" width="13" height="13" rx="2"/>
-                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-                              </svg>
-                            </div>
-                            <span className="detail-action-label">Copiar</span>
-                          </button>
-                          <a className="detail-action-btn" id="btn-map" href="#" aria-label="Abrir no mapa">
-                            <div className="detail-action-icon">
-                              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
-                                <circle cx="12" cy="10" r="3"/>
-                              </svg>
-                            </div>
-                            <span className="detail-action-label">Mapa</span>
-                          </a>
+                      <span className="detail-value">
+                        R. Orlando Pacini, 336
+                        <br />
+                        <span className="detail-value-compact">Vila Melo, Mogi Mirim - SP</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div className="detail-item detail-item--actions">
+                    <div className="detail-actions" style={{width: '100%', justifyContent: 'center', gap: '24px', flexWrap: 'wrap'}}>
+                      <button className="detail-action-btn" id="btn-calendar" aria-label="Adicionar ao calendário" style={{margin: '0'}}>
+                        <div className="detail-action-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                            <line x1="8" y1="14" x2="8" y2="14"/>
+                          </svg>
                         </div>
-                      </div>
+                        <span className="detail-action-label">Adicionar ao<br />calendário</span>
+                      </button>
+                      <button className="detail-action-btn" id="btn-copy" aria-label="Copiar endereço">
+                        <div className="detail-action-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="9" y="9" width="13" height="13" rx="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                          </svg>
+                        </div>
+                        <span className="detail-action-label">Copiar<br />endereço</span>
+                      </button>
+                      <a className="detail-action-btn" id="btn-map" href="#" aria-label="Abrir no mapa">
+                        <div className="detail-action-icon">
+                          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/>
+                            <circle cx="12" cy="10" r="3"/>
+                          </svg>
+                        </div>
+                        <span className="detail-action-label">Abrir<br />mapa</span>
+                      </a>
                     </div>
                   </div>
                   <div className="details-card">
                     <div className="details-footer">
                       <div className="footer-note">
                         Traga <strong>roupa de banho</strong> e, se quiser beber, traga seu <strong>copo</strong> e a sua
-                        <strong> bebida alcoolica</strong>.
+                        <strong> bebida alcoólica</strong>.
                       </div>
                       <div className="footer-photo">
                         <img src="imagens/luan-na-piscina.jpg"  alt="Luan Santana na piscina" className="active" />
@@ -1072,6 +1131,31 @@
 
         // delegação de eventos no document — funciona independente do React
         document.addEventListener("click", (e) => {
+          const calBtn = e.target.closest("#btn-calendar");
+          if (calBtn) {
+            e.preventDefault();
+            const ics = [
+              "BEGIN:VCALENDAR",
+              "VERSION:2.0",
+              "PRODID:-//Giovana 20//PT",
+              "BEGIN:VEVENT",
+              "DTSTART:20260524T120000",
+              "DTEND:20260524T210000",
+              "SUMMARY:Giovana faz 20",
+              "DESCRIPTION:Luan Santana Edition — Traga roupa de banho e sua bebida!",
+              "LOCATION:R. Orlando Pacini\\, 336 - Vila Melo\\, Mogi Mirim - SP\\, 13800-382",
+              "END:VEVENT",
+              "END:VCALENDAR"
+            ].join("\r\n");
+            const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+            const url  = URL.createObjectURL(blob);
+            const a    = document.createElement("a");
+            a.href     = url;
+            a.download = "giovana-faz-20.ics";
+            a.click();
+            URL.revokeObjectURL(url);
+          }
+
           const copyBtn = e.target.closest("#btn-copy");
           if (copyBtn) {
             const text = "R. Orlando Pacini, 336 - Vila Melo, Mogi Mirim - SP, 13800-382";
