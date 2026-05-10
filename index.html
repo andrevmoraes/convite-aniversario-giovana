@@ -574,6 +574,7 @@
       .detail-action-label {
         font-size: 0.72rem;
         font-weight: 600;
+        font-family: "Quicksand", sans-serif;
         letter-spacing: 0.3px;
         color: #555;
         text-align: center;
@@ -611,6 +612,7 @@
         background: transparent;
         box-shadow: none;
         height: 150px;
+        position: relative;
       }
 
       .footer-photo img {
@@ -618,6 +620,14 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 0.8s ease;
+      }
+
+      .footer-photo img.active {
+        opacity: 1;
       }
 
       @keyframes stage-fly {
@@ -955,7 +965,9 @@
                         <strong> bebida alcoolica</strong>.
                       </div>
                       <div className="footer-photo">
-                        <img src="imagens/luan-na-piscina.jpg" alt="Luan Santana na piscina" />
+                        <img src="imagens/luan-na-piscina.jpg"  alt="Luan Santana na piscina" className="active" />
+                        <img src="imagens/luan-na-piscina2.jpg" alt="Luan Santana na piscina" />
+                        <img src="imagens/luan-na-piscina3.webp" alt="Luan Santana na piscina" />
                       </div>
                     </div>
                   </div>
@@ -1044,6 +1056,19 @@
         fly.addEventListener("animationend", () => {
           if (miniPlayer) miniPlayer.hidden = false;
         });
+
+        // slideshow das fotos da piscina — aguarda React montar
+        setTimeout(() => {
+          const slides = document.querySelectorAll(".footer-photo img");
+          if (slides.length > 1) {
+            let current = 0;
+            setInterval(() => {
+              slides[current].classList.remove("active");
+              current = (current + 1) % slides.length;
+              slides[current].classList.add("active");
+            }, 2500);
+          }
+        }, 200);
 
         // delegação de eventos no document — funciona independente do React
         document.addEventListener("click", (e) => {
