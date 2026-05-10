@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giovana 20 - Luan Santana Edition</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:wght@400;500;600&family=Montserrat:wght@400;600;800&family=Oswald:wght@600;700&family=Playfair+Display:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+      />
+    <style>
+      :root {
+        --silver: #c7c7c7;
+        --silver-dark: #9fa1a6;
+        --white: #ffffff;
+        --ink: #1b1b1b;
+        --shine: #f4f4f4;
+        --fly-duration: 5s;
+        --photo-duration: 3s;
+        --details-delay: calc(var(--fly-duration) + var(--photo-duration));
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: "Quicksand", "Cormorant Garamond", serif;
+        color: var(--ink);
+        background: radial-gradient(circle at 20% 20%, #ffffff 0%, #f9f9fb 35%, #f0f1f4 100%);
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .bg-shapes {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .bg-shapes span {
+        position: absolute;
+        border: 2px solid rgba(199, 199, 199, 0.45);
+        border-radius: 999px;
+        filter: blur(0.2px);
+        animation: float-orbit 22s ease-in-out infinite;
+      }
+
+      .bg-shapes span:nth-child(1) {
+        width: 320px;
+        height: 320px;
+        top: 8%;
+        left: -80px;
+        animation-duration: 26s;
+      }
+
+      .bg-shapes span:nth-child(2) {
+        width: 220px;
+        height: 220px;
+        top: 68%;
+        left: 12%;
+        animation-duration: 30s;
+        animation-delay: -8s;
+      }
+
+      .bg-shapes span:nth-child(3) {
+        width: 360px;
+        height: 360px;
+        top: 10%;
+        right: -140px;
+        animation-duration: 34s;
+        animation-delay: -14s;
+      }
+
+      @keyframes float-orbit {
+        0% {
+          transform: translate(0, 0);
+        }
+        50% {
+          transform: translate(18px, -14px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      .luan-fly {
+        position: fixed;
+        top: 18vh;
+        left: 0;
+        width: min(1280px, 110vw);
+        z-index: 2;
+        pointer-events: none;
+        filter: drop-shadow(0 14px 22px rgba(0, 0, 0, 0.25));
+        will-change: transform;
+      }
+
+      @keyframes luan-flight {
+        0% {
+          transform: translate3d(-120%, 2vh, 0) rotate(-6deg);
+        }
+        12% {
+          transform: translate3d(-95%, -4vh, 0) rotate(-2deg);
+        }
+        24% {
+          transform: translate3d(-70%, 3vh, 0) rotate(1deg);
+        }
+        36% {
+          transform: translate3d(-45%, -5vh, 0) rotate(-3deg);
+        }
+        48% {
+          transform: translate3d(-20%, 4vh, 0) rotate(2deg);
+        }
+        60% {
+          transform: translate3d(15%, -4vh, 0) rotate(3deg);
+        }
+        72% {
+          transform: translate3d(50%, 3vh, 0) rotate(-2deg);
+        }
+        84% {
+          transform: translate3d(85%, -3vh, 0) rotate(1deg);
+        }
+        100% {
+          transform: translate3d(140%, 4vh, 0) rotate(0deg);
+        }
+      }
+
+      .page {
+        position: relative;
+        z-index: 1;
+        padding: 56px 6vw 80px;
+        display: grid;
+        gap: 36px;
+        align-items: center;
+        opacity: 1;
+      }
+
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+      }
+
+      .badge {
+        border: 1px solid var(--silver);
+        padding: 8px 14px;
+        border-radius: 999px;
+        font-size: 12px;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: var(--silver-dark);
+        background: rgba(255, 255, 255, 0.6);
+      }
+
+      .invite {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 36px;
+        align-items: center;
+      }
+
+      .invite-title {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(2.3rem, 4vw, 3.4rem);
+        line-height: 1.05;
+        letter-spacing: 0.6px;
+      }
+
+      .invite-subtitle {
+        margin-top: 12px;
+        font-size: 1.1rem;
+        color: #333;
+      }
+
+      .invite-cta {
+        margin-top: 22px;
+        display: inline-flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 20px;
+        border-radius: 999px;
+        border: 1px solid var(--silver);
+        background: linear-gradient(120deg, var(--white), var(--shine));
+        font-weight: 600;
+        text-decoration: none;
+        color: var(--ink);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      .invite-cta span {
+        font-size: 18px;
+      }
+
+      .hero-animate {
+        opacity: 0;
+        transform: translateY(32px);
+        filter: blur(8px);
+      }
+
+      .glow-animate {
+        opacity: 0;
+        transform: scale(0.96);
+      }
+
+      .intro-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 4;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at top, #ffffff 0%, #f2f2f2 55%, #e3e4e8 100%);
+      }
+
+      .intro-card {
+        text-align: center;
+        padding: 36px 32px;
+        border-radius: 26px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.28));
+        box-shadow: 0 18px 40px rgba(26, 26, 26, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px) saturate(1.2);
+        -webkit-backdrop-filter: blur(14px) saturate(1.2);
+      }
+
+      .intro-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(1.8rem, 3vw, 2.4rem);
+        margin-bottom: 14px;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+      }
+
+      .intro-button {
+        border: none;
+        padding: 14px 28px;
+        border-radius: 999px;
+        font-weight: 700;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        background: linear-gradient(120deg, #ffffff, #e6e6e6);
+        border: 1px solid var(--silver);
+        cursor: pointer;
+        animation: pulse 1.8s ease-in-out infinite;
+      }
+
+      .intro-hint {
+        margin-top: 12px;
+        font-size: 0.9rem;
+        color: #666;
+      }
+
+      .started .intro-screen {
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease-out;
+      }
+
+      .started .luan-fly {
+        animation: luan-flight var(--fly-duration) cubic-bezier(0.22, 0.61, 0.36, 1) forwards;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          box-shadow: 0 0 0 0 rgba(159, 161, 166, 0.4);
+        }
+        50% {
+          transform: scale(1.04);
+          box-shadow: 0 0 0 16px rgba(159, 161, 166, 0);
+        }
+      }
+
+      @keyframes photo-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes photo-out {
+        to {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+
+      @keyframes details-in {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .photo-card {
+        position: relative;
+        border-radius: 24px;
+        overflow: hidden;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        min-height: 320px;
+        width: min(520px, 100%);
+        justify-self: end;
+        transform: translateX(6vw);
+      }
+
+      .photo-stage {
+        display: grid;
+        gap: 8px;
+      }
+
+      .stage {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 32px 6vw;
+        text-align: center;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .stage-fly {
+        background: url("/assets/show-DDv_mpz0.jpg") center center / cover no-repeat;
+      }
+
+      .stage-details {
+        place-items: center;
+        padding-top: 32px;
+      }
+
+      .balloons {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        overflow: hidden;
+        opacity: 0;
+      }
+
+      .started .stage-details .balloons {
+        opacity: 1;
+        transition: opacity 0.6s ease-out;
+      }
+
+      .balloon {
+        position: absolute;
+        bottom: -20vh;
+        width: 70px;
+        height: 90px;
+        --scale: 1;
+        --drift: 24px;
+        background: url("/assets/balao-Dd39DnfF.png") center / contain no-repeat;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18));
+        animation: balloon-rise 12s linear infinite;
+      }
+
+      .balloon:nth-child(1) {
+        left: 12%;
+        animation-duration: 10s;
+        animation-delay: 0s;
+        --scale: 0.95;
+        --drift: 22px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(25deg) saturate(1.2);
+      }
+
+      .balloon:nth-child(2) {
+        left: 28%;
+        animation-duration: 11s;
+        animation-delay: -6s;
+        --scale: 0.85;
+        --drift: 28px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(145deg) saturate(1.3);
+      }
+
+      .balloon:nth-child(3) {
+        left: 68%;
+        animation-duration: 10.5s;
+        animation-delay: -8s;
+        --scale: 1.05;
+        --drift: 26px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(250deg) saturate(1.25);
+      }
+
+      .balloon:nth-child(4) {
+        left: 84%;
+        animation-duration: 12s;
+        animation-delay: -10s;
+        --scale: 0.9;
+        --drift: 30px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(320deg) saturate(1.2);
+      }
+
+      .balloon:nth-child(5) {
+        left: 44%;
+        animation-duration: 9.5s;
+        animation-delay: -3s;
+        --scale: 0.9;
+        --drift: 20px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(80deg) saturate(1.3);
+      }
+
+      .balloon:nth-child(6) {
+        left: 6%;
+        animation-duration: 11.5s;
+        animation-delay: -7s;
+        --scale: 0.8;
+        --drift: 26px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(200deg) saturate(1.2);
+      }
+
+      .balloon:nth-child(7) {
+        left: 92%;
+        animation-duration: 10.8s;
+        animation-delay: -9s;
+        --scale: 0.88;
+        --drift: 24px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(15deg) saturate(1.35);
+      }
+
+      .balloon:nth-child(8) {
+        left: 56%;
+        animation-duration: 12.5s;
+        animation-delay: -11s;
+        --scale: 1.1;
+        --drift: 32px;
+        filter: drop-shadow(0 8px 10px rgba(0, 0, 0, 0.18)) hue-rotate(280deg) saturate(1.25);
+      }
+
+      @keyframes balloon-rise {
+        0% {
+          transform: translateY(0) translateX(0) scale(var(--scale, 1));
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        25% {
+          transform: translateY(-35vh) translateX(calc(var(--drift) * -0.6)) scale(var(--scale, 1));
+        }
+        50% {
+          transform: translateY(-70vh) translateX(var(--drift)) scale(var(--scale, 1));
+        }
+        75% {
+          transform: translateY(-105vh) translateX(calc(var(--drift) * -0.4)) scale(var(--scale, 1));
+        }
+        100% {
+          transform: translateY(-140vh) translateX(calc(var(--drift) * 0.5)) scale(var(--scale, 1));
+          opacity: 0;
+        }
+      }
+
+      .stage-content {
+        width: min(980px, 100%);
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+      }
+
+      .stage-photo {
+        text-align: left;
+      }
+
+      .stage-photo-content {
+        width: min(1100px, 100%);
+        grid-template-columns: minmax(220px, 0.9fr) minmax(260px, 1.2fr);
+        align-items: center;
+        gap: 28px;
+        justify-items: stretch;
+      }
+
+      .started .stage-fly {
+        animation: stage-fly var(--fly-duration) ease-out forwards;
+      }
+
+      .started .stage-photo {
+        animation: stage-photo var(--photo-duration) ease-in-out var(--fly-duration) forwards;
+      }
+
+      .started .stage-details {
+        animation: details-in 0.7s ease-out var(--details-delay) forwards;
+      }
+
+      .photo-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        mix-blend-mode: multiply;
+        filter: contrast(1.05) saturate(1.08);
+      }
+
+      .caption-block {
+        max-width: 420px;
+        justify-self: start;
+        text-align: left;
+      }
+
+      .photo-caption {
+        font-weight: 800;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
+        font-size: clamp(1.9rem, 3.4vw, 3rem);
+        color: #1b1b1b;
+        text-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+      }
+
+      .details-layout {
+        display: grid;
+        gap: 12px;
+        width: min(980px, 100%);
+      }
+
+      .details-header {
+        display: grid;
+        gap: 8px;
+        text-align: center;
+        margin-bottom: 12px;
+      }
+
+      .details-title {
+        font-family: "Cinzel", serif;
+        font-size: clamp(2.1rem, 3.2vw, 3.1rem);
+        line-height: 1.05;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        white-space: nowrap;
+      }
+
+      .details-subtitle {
+        font-weight: 600;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+        font-size: 1.05rem;
+        color: #5c5c5c;
+      }
+
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 16px;
+      }
+
+      .detail-item {
+        display: grid;
+        gap: 4px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: linear-gradient(160deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.25));
+        box-shadow: 0 12px 28px rgba(23, 23, 23, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(12px) saturate(1.15);
+        -webkit-backdrop-filter: blur(12px) saturate(1.15);
+      }
+
+      .detail-label {
+        font-size: 0.75rem;
+        letter-spacing: 1.2px;
+        text-transform: uppercase;
+        color: #7a7a7a;
+      }
+
+      .detail-value {
+        font-weight: 600;
+        color: #1f1f1f;
+      }
+
+      .details-footer {
+        display: grid;
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        gap: 0;
+        align-items: center;
+      }
+
+      .detail-item--full {
+        grid-column: 1 / -1;
+      }
+
+      .details-card {
+        overflow: hidden;
+        border-radius: 18px;
+        border: 1px solid rgba(255, 255, 255, 0.45);
+        background: linear-gradient(140deg, rgba(255, 255, 255, 0.62), rgba(255, 255, 255, 0.2));
+        box-shadow: 0 16px 34px rgba(26, 26, 26, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(14px) saturate(1.15);
+        -webkit-backdrop-filter: blur(14px) saturate(1.15);
+      }
+
+      .footer-note {
+        font-size: 0.95rem;
+        color: #4a4a4a;
+        line-height: 1.4;
+        padding: 16px;
+      }
+
+      .footer-note strong {
+        color: #1b1b1b;
+      }
+
+      .footer-photo {
+        border-radius: 18px;
+        overflow: hidden;
+        border: none;
+        background: transparent;
+        box-shadow: none;
+        height: 150px;
+      }
+
+      .footer-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      @keyframes stage-fly {
+        0% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+
+      @keyframes stage-photo {
+        0% {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        15% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        85% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+          transform: translateY(-12px);
+        }
+      }
+
+      footer {
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .sound-toggle {
+        position: fixed;
+        right: 18px;
+        bottom: 18px;
+        z-index: 3;
+        border: 1px solid var(--silver);
+        background: rgba(255, 255, 255, 0.9);
+        padding: 10px 16px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+      }
+
+      .sound-toggle[hidden] {
+        display: none;
+      }
+
+      .mini-player {
+        position: fixed;
+        left: 18px;
+        bottom: 18px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 10px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(199, 199, 199, 0.8);
+        background: rgba(255, 255, 255, 0.85);
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+        font-size: 0.85rem;
+      }
+
+      .mini-player[hidden] {
+        display: none;
+      }
+
+      .mini-player button {
+        border: 1px solid rgba(199, 199, 199, 0.9);
+        background: #ffffff;
+        padding: 6px 12px;
+        border-radius: 999px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      .mini-player input[type="range"] {
+        width: 90px;
+        accent-color: #8f8f8f;
+      }
+
+      @media (max-width: 720px) {
+        header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .invite {
+          gap: 24px;
+        }
+
+        .photo-card {
+          min-height: 360px;
+        }
+
+        .stage-photo {
+          text-align: center;
+        }
+
+        .stage-photo-content {
+          grid-template-columns: 1fr;
+          justify-items: center;
+        }
+
+        .caption-block {
+          max-width: 100%;
+          text-align: center;
+        }
+
+        .photo-card {
+          transform: none;
+          width: min(520px, 100%);
+        }
+
+        .details-footer {
+          grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+        }
+
+        .footer-photo {
+          height: 160px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg-shapes" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <img class="luan-fly" src="/assets/luan-voando-CAPjckNJ.png" alt="Luan Santana voando" />
+    <audio id="luan-audio" src="imagens/luan-vouvoar.mp3" preload="auto"></audio>
+    <button class="sound-toggle" id="sound-toggle" hidden>Ativar som</button>
+    <div class="mini-player" id="mini-player" hidden>
+      <button type="button" id="mini-play-toggle">Pausar</button>
+      <input type="range" id="mini-volume" min="0" max="1" step="0.01" value="1" aria-label="Volume" />
+    </div>
+    <div class="intro-screen">
+      <div class="intro-card">
+        <div class="intro-title">Convite especial da Giovana</div>
+        <button class="intro-button" id="open-invite">Abrir convite</button>
+        <div class="intro-hint">Toque para iniciar a surpresa</div>
+      </div>
+    </div>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      function App() {
+        return (
+          <main className="page">
+            <section className="stage stage-fly" aria-hidden="true">
+              <div className="stage-content"></div>
+            </section>
+
+            <section className="stage stage-photo">
+              <div className="stage-content stage-photo-content">
+                <div className="caption-block">
+                  <div className="photo-caption">Você está convidado pro meu aniversário</div>
+                </div>
+                <div className="photo-card">
+                  <img src="imagens/luan-santana3.jpg" alt="Luan Santana" />
+                </div>
+              </div>
+            </section>
+
+            <section className="stage stage-details">
+              <div className="balloons" aria-hidden="true">
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+                <span className="balloon"></span>
+              </div>
+              <div className="stage-content">
+                <div className="details-layout">
+                  <div className="details-header">
+                    <div className="details-title">Giovana faz 20</div>
+                    <div className="details-subtitle">Luan Santana Edition</div>
+                  </div>
+                  <div className="details-grid">
+                    <div className="detail-item">
+                      <span className="detail-label">Data</span>
+                      <span className="detail-value">24/05/26</span>
+                    </div>
+                    <div className="detail-item">
+                      <span className="detail-label">Horario</span>
+                      <span className="detail-value">A partir das 12h</span>
+                    </div>
+                    <div className="detail-item detail-item--full">
+                      <span className="detail-label">Local e Bairro</span>
+                      <span className="detail-value">
+                        Rua Orlando Pacini, 336
+                        <br />
+                        Santa Cruz, Mogi Mirim
+                      </span>
+                    </div>
+                  </div>
+                  <div className="details-card">
+                    <div className="details-footer">
+                      <div className="footer-note">
+                        Traga <strong>roupa de banho</strong> e, se quiser beber, leve a sua
+                        <strong> bebida alcoolica</strong>.
+                      </div>
+                      <div className="footer-photo">
+                        <img src="imagens/luan-na-piscina.jpg" alt="Luan Santana na piscina" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </main>
+        );
+      }
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(<App />);
+
+      const fly = document.querySelector(".luan-fly");
+      const audio = document.getElementById("luan-audio");
+
+      const openInvite = document.getElementById("open-invite");
+
+      const markStarted = () => {
+        document.body.classList.add("started");
+      };
+
+      if (fly && audio && openInvite) {
+        const soundToggle = document.getElementById("sound-toggle");
+        const miniPlayer = document.getElementById("mini-player");
+        const miniPlayToggle = document.getElementById("mini-play-toggle");
+        const miniVolume = document.getElementById("mini-volume");
+        let audioUnlocked = false;
+
+        const unlockAudio = () => {
+          if (audioUnlocked) {
+            return Promise.resolve();
+          }
+          audioUnlocked = true;
+          audio.muted = true;
+          const playAttempt = audio.play();
+          const finalize = () => {
+            audio.pause();
+            audio.currentTime = 0;
+            audio.muted = false;
+          };
+
+          if (playAttempt && playAttempt.then) {
+            return playAttempt.then(finalize).catch(() => {
+              audioUnlocked = false;
+            });
+          }
+
+          finalize();
+          return Promise.resolve();
+        };
+        const startAudio = () => {
+          const playFromFive = () => {
+            audio.volume = 1;
+            if (miniVolume) {
+              miniVolume.value = String(audio.volume);
+            }
+            if (audio.readyState >= 2) {
+              audio.currentTime = Math.min(6, audio.duration || 6);
+            }
+            const playPromise = audio.play();
+            if (playPromise && playPromise.then) {
+              playPromise.then(() => {
+                audio.currentTime = Math.min(6, audio.duration || 6);
+              });
+            }
+            if (miniPlayToggle) {
+              miniPlayToggle.textContent = "Pausar";
+            }
+            return playPromise;
+          };
+
+          if (audio.readyState >= 2) {
+            return playFromFive();
+          } else {
+            audio.addEventListener("loadedmetadata", playFromFive, { once: true });
+          }
+        };
+
+        const beginSequence = () => {
+          markStarted();
+          const attempt = startAudio();
+          if (attempt && attempt.catch) {
+            attempt.catch(() => {
+              if (soundToggle) {
+                soundToggle.hidden = false;
+              }
+            });
+          }
+        };
+
+        openInvite.addEventListener("click", () => {
+          unlockAudio().finally(() => beginSequence());
+        });
+
+        document.addEventListener(
+          "touchstart",
+          () => {
+            unlockAudio();
+          },
+          { once: true, passive: true }
+        );
+        document.addEventListener(
+          "click",
+          () => {
+            unlockAudio();
+          },
+          { once: true }
+        );
+
+        if (soundToggle) {
+          soundToggle.addEventListener("click", () => {
+            soundToggle.hidden = true;
+            startAudio();
+          });
+        }
+        if (miniPlayToggle) {
+          miniPlayToggle.addEventListener("click", () => {
+            if (audio.paused) {
+              audio.play();
+              miniPlayToggle.textContent = "Pausar";
+            } else {
+              audio.pause();
+              miniPlayToggle.textContent = "Tocar";
+            }
+          });
+        }
+
+        if (miniVolume) {
+          miniVolume.addEventListener("input", (event) => {
+            const target = event.target;
+            audio.volume = Number(target.value);
+          });
+        }
+
+        fly.addEventListener("animationend", () => {
+          audio.volume = 0.2;
+          if (miniVolume) {
+            miniVolume.value = String(audio.volume);
+          }
+          if (miniPlayer) {
+            miniPlayer.hidden = false;
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
