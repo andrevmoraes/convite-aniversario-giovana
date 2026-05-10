@@ -3,7 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Giovana 20 - Luan Santana Edition</title>
+    <title>Giovana 20: Luan Santana Edition</title>
+    <link rel="icon" type="image/png" href="imagens/image.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
       <link
@@ -920,9 +921,9 @@
                       <span className="detail-label">Local</span>
                       <div className="detail-value-row">
                         <span className="detail-value">
-                          Rua Orlando Pacini, 336
+                          R. Orlando Pacini, 336
                           <br />
-                          Santa Cruz, Mogi Mirim
+                          Vila Melo, Mogi Mirim - SP
                         </span>
                         <div className="detail-actions">
                           <button className="detail-action-btn" id="btn-copy" aria-label="Copiar endereço">
@@ -1048,7 +1049,7 @@
         document.addEventListener("click", (e) => {
           const copyBtn = e.target.closest("#btn-copy");
           if (copyBtn) {
-            const text = "Rua Orlando Pacini, 336, Santa Cruz, Mogi Mirim";
+            const text = "R. Orlando Pacini, 336 - Vila Melo, Mogi Mirim - SP, 13800-382";
             if (navigator.clipboard) {
               navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
             } else {
@@ -1070,7 +1071,7 @@
           if (mapBtn) {
             e.preventDefault();
             const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-            const addr = encodeURIComponent("Rua Orlando Pacini 336, Santa Cruz, Mogi Mirim, SP");
+            const addr = encodeURIComponent("R. Orlando Pacini, 336 - Vila Melo, Mogi Mirim - SP, 13800-382");
             window.location.href = isIOS
               ? "https://maps.apple.com/?q=" + addr
               : "https://maps.google.com/?q=" + addr;
