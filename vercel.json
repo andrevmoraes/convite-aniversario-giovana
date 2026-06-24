@@ -1,5 +1,4 @@
 {
-  "buildCommand": "",
-  "outputDirectory": ".",
-  "installCommand": ""
+  "buildCommand": "vite build",
+  "outputDirectory": "dist"
 }
